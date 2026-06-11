@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: backend-engineer-test
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/rdas_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: rdas_user
+    password: rdas_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+
+
+
