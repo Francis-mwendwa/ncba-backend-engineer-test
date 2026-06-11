@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: countries-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass001
+      MYSQL_DATABASE: rdas_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppass001"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: countries-api
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      # Spring Boot server port
+      SERVER_PORT: "8080"
+      # Spring Datasource overrides to point to the mysql service
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/rdas_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "pass001"
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "com.mysql.cj.jdbc.Driver"
+      # Ensure schema is created on first run (matches project defaults)
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "create"
+      # Optional: JVM tuning inside container
+      JAVA_TOOL_OPTIONS: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Dfile.encoding=UTF-8"
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
+    driver: local

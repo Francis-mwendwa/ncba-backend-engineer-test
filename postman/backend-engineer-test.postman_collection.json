@@ -1,0 +1,160 @@
+{
+  "info": {
+    "_postman_id": "b3d888c3-3d7e-43b9-9cc7-0d9e8a5d9f50",
+    "name": "Backend Engineer Test - Countries API",
+    "description": "Sample Postman collection for the Countries API. Includes search, filter, pagination, sorting, details by ISO code, and countries by currency. Set the baseUrl variable to your running server (defaults to http://localhost:8080).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search/Filter Countries (paginated)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/countries?page={{page}}&size={{size}}&sortBy={{sortBy}}&sortDir={{sortDir}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "countries"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "ken",
+              "disabled": true,
+              "description": "Optional search by country name (substring, case-insensitive)"
+            },
+            {
+              "key": "continent",
+              "value": "AF",
+              "disabled": true,
+              "description": "Optional exact match filter by continent code (e.g., AF, EU, AS, NA, SA, OC)"
+            },
+            {
+              "key": "currency",
+              "value": "KES",
+              "disabled": true,
+              "description": "Optional exact match filter by currency ISO code (e.g., USD, EUR, KES)"
+            },
+            {
+              "key": "language",
+              "value": "en",
+              "disabled": true,
+              "description": "Optional search by language (substring, case-insensitive)"
+            },
+            {
+              "key": "page",
+              "value": "{{page}}",
+              "description": "Page number (0-based)"
+            },
+            {
+              "key": "size",
+              "value": "{{size}}",
+              "description": "Page size"
+            },
+            {
+              "key": "sortBy",
+              "value": "{{sortBy}}",
+              "description": "Sort field (e.g., name, capital, currency, continent, language)"
+            },
+            {
+              "key": "sortDir",
+              "value": "{{sortDir}}",
+              "description": "Sort direction: asc or desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Country By ISO Code",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/countries/{{isoCode}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "countries",
+            "{{isoCode}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Countries By Currency (paginated)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/countries/by-currency/{{currency}}?page={{page}}&size={{size}}&sortBy={{sortBy}}&sortDir={{sortDir}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "countries",
+            "by-currency",
+            "{{currency}}"
+          ],
+          "query": [
+            { "key": "page", "value": "{{page}}" },
+            { "key": "size", "value": "{{size}}" },
+            { "key": "sortBy", "value": "{{sortBy}}" },
+            { "key": "sortDir", "value": "{{sortDir}}" }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "page",
+      "value": "0",
+      "type": "string"
+    },
+    {
+      "key": "size",
+      "value": "10",
+      "type": "string"
+    },
+    {
+      "key": "sortBy",
+      "value": "name",
+      "type": "string"
+    },
+    {
+      "key": "sortDir",
+      "value": "asc",
+      "type": "string"
+    },
+    {
+      "key": "isoCode",
+      "value": "KE",
+      "type": "string"
+    },
+    {
+      "key": "currency",
+      "value": "USD",
+      "type": "string"
+    }
+  ]
+}

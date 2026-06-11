@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 public enum TransactionStatus {
 
-    FAILURE("1", "Failed"),
-    SUCCESS("2", "Accepted");
+    SUCCESS("0", "Success"),
+    FAILURE("1", "Failed");
 
-    private String code;
-    private String description;
+    private final String code;
+    private final String description;
 
 }

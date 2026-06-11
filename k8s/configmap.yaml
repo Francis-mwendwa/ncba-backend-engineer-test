@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: countries-config
+  namespace: ncba-countries
+  labels:
+    app.kubernetes.io/name: countries-api
+
+data:
+  # Spring Boot server port
+  SERVER_PORT: "8080"
+
+  # JVM options (tune as needed)
+  JAVA_TOOL_OPTIONS: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Dfile.encoding=UTF-8"

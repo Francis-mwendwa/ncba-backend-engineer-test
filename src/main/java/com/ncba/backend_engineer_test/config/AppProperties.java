@@ -16,12 +16,6 @@ public class AppProperties {
     private Integer pendingAcquireMaxCount = 1000; // eg 1000 (pending connections)
     private Integer pendingAcquireTimeoutInSeconds = 10; // eg 10 (seconds)
 
-    // Endpoint for calling the channel for push payment
-    private String channelBaseURL;
-    private String pushPaymentResourcePath;
-    private String pushPaymentQueryStatusPath;
-    private String callbackUrl;
+    private String soapEndpoint;
 
-
-    private String mockQueryStatus; // to be removed
 }
